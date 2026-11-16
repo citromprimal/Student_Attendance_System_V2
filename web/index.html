@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rozvrh · dochádzka</title>
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebar" aria-label="Hlavná navigácia">
+        <a class="brand" href="index.html">dochádzka</a>
+        <div class="eyebrow">Pracovný priestor</div>
+
+        <nav>
+            <a href="index.html" class="active"
+                aria-current="page">Rozvrh</a>
+            <a href="evidencia.html">Evidencia dochádzky</a>
+            <a href="prehlad.html">Prehľad dochádzky</a>
+        </nav>
+
+        <div class="semester-card">
+            <strong>Zimný semester</strong>
+            <span>2026 / 2027</span>
+            <span>
+                9. týždeň výučby
+            </span>
+        </div>
+
+        <div class="account">
+            <small>Prístup iba pre učiteľov</small>
+            <strong>Ján Novák</strong>
+            <span>Administrátor</span>
+            <form data-go="prihlasenie.html">
+                <button type="submit">Odhlásiť sa</button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="topbar">
+            <button class="btn btn-light btn-icon d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Otvoriť navigáciu">☰</button>
+            <span class="year">Akademický rok 2026 / 2027</span>
+            <span class="current">Ukážkové údaje · Zimný semester 2026 / 2027</span>
+        </header>
+
+        <main class="screen">
+            <div class="page-heading">
+                <h1>Rozvrh</h1>
+                <p>Váš rozvrh a najbližšie hodiny na jednom mieste.</p>
+            </div>
+
+            <div class="toolbar">
+                <a class="btn btn-light btn-icon" href="#" data-proto-note="Prototyp zobrazuje iba jeden ukážkový týždeň." aria-label="Predchádzajúci týždeň">‹</a>
+                <a class="btn btn-light" href="index.html">Dnes</a>
+                <a class="btn btn-light btn-icon" href="#" data-proto-note="Prototyp zobrazuje iba jeden ukážkový týždeň." aria-label="Nasledujúci týždeň">›</a>
+                <h2 class="week-label grow">
+                    9. – 13. novembra 2026
+                    <span class="toolbar-meta ms-2">9. týždeň výučby</span>
+                </h2>
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#lessonModal">+ Pridať výučbu</button>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="panel panel-body">
+                        <div class="stat-label fw-medium mb-3">Hodín tento týždeň</div>
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="stat-number">05</span>
+                            <span class="stat-label">Prednášky, semináre a cvičenia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-body">
+                        <div class="stat-label fw-medium mb-3">Predmety</div>
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="stat-number">02</span>
+                            <span class="stat-label">Zimný semester 2026 / 2027</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel tt">
+                <div class="tt-inner">
+                    <div class="tt-head">
+                        <div class="tt-corner">Hodina <span>Začiatok</span></div>
+                        <div class="tt-hours">
+                            <div><small>1</small><strong>7:00</strong></div>
+                            <div><small>2</small><strong>8:00</strong></div>
+                            <div><small>3</small><strong>9:00</strong></div>
+                            <div><small>4</small><strong>10:00</strong></div>
+                            <div><small>5</small><strong>11:00</strong></div>
+                            <div><small>6</small><strong>12:00</strong></div>
+                            <div><small>7</small><strong>13:00</strong></div>
+                            <div><small>8</small><strong>14:00</strong></div>
+                            <div><small>9</small><strong>15:00</strong></div>
+                            <div><small>10</small><strong>16:00</strong></div>
+                            <div><small>11</small><strong>17:00</strong></div>
+                            <div><small>12</small><strong>18:00</strong></div>
+                            <div><small>13</small><strong>19:00</strong></div>
+                            <div><small>14</small><strong>20:00</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="tt-row">
+                        <div class="tt-day">
+                            <strong>Pon</strong>
+                            <span>9. 11.</span>
+                        </div>
+
+                        <div class="tt-track">
+
+                            <div class="tt-block c0"
+                                style="--col: 13; --span: 18; --lane: 1"
+                                title="Programovanie · Prednáška · 08:00 – 09:30 · A-101">
+                                <a class="title stretched-link"
+                                    href="evidencia.html">Programovanie</a>
+                                Prednáška · A-101
+                                <a class="edit" href="#" data-bs-toggle="modal" data-bs-target="#lessonModal"
+                                    aria-label="Upraviť výučbu Programovanie · Prednáška" title="Upraviť">✎</a>
+                                <form
+                                    data-confirm="Výučba „Programovanie · Prednáška“ sa odstráni z celého semestra vrátane zapísanej dochádzky.">
+                                    <button class="remove" type="submit" aria-label="Odstrániť výučbu Programovanie">×</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tt-row today">
+                        <div class="tt-day">
+                            <strong>Uto</strong>
+                            <span>10. 11.</span>
+                            <span class="pill">Dnes</span>
+                        </div>
+
+                        <div class="tt-track">
+
+                            <div class="tt-block c2"
+                                style="--col: 37; --span: 18; --lane: 1"
+                                title="Databázové systémy · Cvičenie · A · 10:00 – 11:30 · PC-2">
+                                <a class="title stretched-link"
+                                    href="evidencia.html">Databázové systémy</a>
+                                Cvičenie · A · PC-2
+                                <a class="edit" href="#" data-bs-toggle="modal" data-bs-target="#lessonModal"
+                                    aria-label="Upraviť výučbu Databázové systémy · Cvičenie · A" title="Upraviť">✎</a>
+                                <form
+                                    data-confirm="Výučba „Databázové systémy · Cvičenie · A“ sa odstráni z celého semestra vrátane zapísanej dochádzky.">
+                                    <button class="remove" type="submit" aria-label="Odstrániť výučbu Databázové systémy">×</button>
+                                </form>
+                            </div>
+                            <div class="tt-block c2"
+                                style="--col: 37; --span: 18; --lane: 2"
+                                title="Databázové systémy · Cvičenie · B · 10:00 – 11:30 · PC-3">
+                                <a class="title stretched-link"
+                                    href="evidencia.html">Databázové systémy</a>
+                                Cvičenie · B · PC-3
+                                <a class="edit" href="#" data-bs-toggle="modal" data-bs-target="#lessonModal"
+                                    aria-label="Upraviť výučbu Databázové systémy · Cvičenie · B" title="Upraviť">✎</a>
+                                <form
+                                    data-confirm="Výučba „Databázové systémy · Cvičenie · B“ sa odstráni z celého semestra vrátane zapísanej dochádzky.">
+                                    <button class="remove" type="submit" aria-label="Odstrániť výučbu Databázové systémy">×</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tt-row">
+                        <div class="tt-day">
+                            <strong>Str</strong>
+                            <span>11. 11.</span>
+                        </div>
+
+                        <div class="tt-track">
+
+                        </div>
+                    </div>
+                    <div class="tt-row">
+                        <div class="tt-day">
+                            <strong>Štv</strong>
+                            <span>12. 11.</span>
+                        </div>
+
+                        <div class="tt-track">
+
+                            <div class="tt-block c0"
+                                style="--col: 73; --span: 18; --lane: 1"
+                                title="Programovanie · Cvičenie · 13:00 – 14:30 · PC-1">
+                                <a class="title stretched-link"
+                                    href="evidencia.html">Programovanie</a>
+                                Cvičenie · PC-1
+                                <div class="note">Každý 2. týždeň</div>
+                                <a class="edit" href="#" data-bs-toggle="modal" data-bs-target="#lessonModal"
+                                    aria-label="Upraviť výučbu Programovanie · Cvičenie" title="Upraviť">✎</a>
+                                <form
+                                    data-confirm="Výučba „Programovanie · Cvičenie“ sa odstráni z celého semestra vrátane zapísanej dochádzky.">
+                                    <button class="remove" type="submit" aria-label="Odstrániť výučbu Programovanie">×</button>
+                                </form>
+                            </div>
+                            <div class="tt-block c2"
+                                style="--col: 97; --span: 18; --lane: 1"
+                                title="Databázové systémy · Cvičenie · C · 15:00 – 16:30 · PC-2">
+                                <a class="title stretched-link"
+                                    href="evidencia.html">Databázové systémy</a>
+                                Cvičenie · C · PC-2
+                                <a class="edit" href="#" data-bs-toggle="modal" data-bs-target="#lessonModal"
+                                    aria-label="Upraviť výučbu Databázové systémy · Cvičenie · C" title="Upraviť">✎</a>
+                                <form
+                                    data-confirm="Výučba „Databázové systémy · Cvičenie · C“ sa odstráni z celého semestra vrátane zapísanej dochádzky.">
+                                    <button class="remove" type="submit" aria-label="Odstrániť výučbu Databázové systémy">×</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tt-row">
+                        <div class="tt-day">
+                            <strong>Pia</strong>
+                            <span>13. 11.</span>
+                        </div>
+
+                        <div class="tt-track">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2 class="modal-title" id="confirmTitle">Naozaj odstrániť?</h2>
+                <div data-confirm-text></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-wide" data-bs-dismiss="modal">Zrušiť</button>
+                <button type="button" class="btn btn-primary btn-wide" data-confirm-ok>Odstrániť</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="lessonModal" tabindex="-1" aria-labelledby="lessonTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="--bs-modal-width: 640px">
+        <form class="modal-content" id="lessonForm" novalidate>
+            <input type="hidden" name="week" value="2026-11-09">
+
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title" id="lessonTitle">Pridať výučbu</h2>
+                    <p>Vytvorte novú hodinu v rozvrhu – Zimný semester 2026 / 2027.</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zavrieť"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="subject">Predmet</label>
+                        <input class="form-control" type="text" id="subject" name="subject" list="subjectList"
+                            value="" placeholder="Vyberte alebo napíšte nový" autocomplete="off" required>
+                        <datalist id="subjectList">
+                            <option value="Databázové systémy"></option>
+                            <option value="Programovanie"></option>
+                        </datalist>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="type">Typ výučby</label>
+                        <select class="form-select" id="type" name="type">
+                            <option value="lecture">Prednáška</option>
+                            <option value="seminar">Seminár</option>
+                            <option value="exercise" selected>Cvičenie</option>
+                            <option value="lab">Lab. cvičenie</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="room">Miestnosť <span class="optional">voliteľné</span></label>
+                        <input class="form-control" type="text" id="room" name="room"
+                            value="" placeholder="napr. A-101">
+                    </div>
+
+                    <div class="col-sm-4" data-hide-once>
+                        <label class="form-label" for="weekday">Deň</label>
+                        <select class="form-select" id="weekday" name="weekday">
+                            <option value="1" selected>Pondelok</option>
+                            <option value="2">Utorok</option>
+                            <option value="3">Streda</option>
+                            <option value="4">Štvrtok</option>
+                            <option value="5">Piatok</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <label class="form-label" for="starts_at">Začiatok</label>
+                        <input class="form-control" type="time" step="300" id="starts_at" name="starts_at"
+                            value="08:00" required>
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <label class="form-label" for="ends_at">Koniec</label>
+                        <input class="form-control" type="time" step="300" id="ends_at" name="ends_at"
+                            value="09:30" required>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-label" id="recurrenceLabel">Opakovanie</div>
+                    <div class="chips" role="radiogroup" aria-labelledby="recurrenceLabel">
+                        <input class="btn-check" type="radio" name="recurrence" id="recurrence-weekly"
+                            value="weekly" checked>
+                        <label for="recurrence-weekly">Každý týždeň</label>
+                        <input class="btn-check" type="radio" name="recurrence" id="recurrence-biweekly"
+                            value="biweekly">
+                        <label for="recurrence-biweekly">Každý druhý týždeň</label>
+                        <input class="btn-check" type="radio" name="recurrence" id="recurrence-once"
+                            value="once">
+                        <label for="recurrence-once">Jednorazovo</label>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="valid_from" data-from-label>Platí od</label>
+                            <input class="form-control" type="date" id="valid_from" name="valid_from"
+                                min="2026-09-14" max="2026-12-11"
+                                value="2026-09-14" required>
+                        </div>
+                        <div class="col-sm-6" data-hide-once>
+                            <label class="form-label" for="valid_to">Platí do</label>
+                            <input class="form-control" type="date" id="valid_to" name="valid_to"
+                                min="2026-09-14" max="2026-12-11"
+                                value="2026-12-11">
+                        </div>
+                    </div>
+                    <div class="form-text mt-2" data-hide-once>Predvolené podľa nastavení semestra · 13 týždňov</div>
+                </div>
+
+                <div class="notice" role="status"><strong>Bez kolízií</strong><div>V tomto čase nemáte inú výučbu a miestnosť nie je obsadená.</div></div>            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-wide" data-bs-dismiss="modal">Zrušiť</button>
+                <button type="submit" class="btn btn-primary btn-wide">Uložiť výučbu</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

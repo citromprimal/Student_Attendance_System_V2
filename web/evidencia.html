@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Evidencia dochádzky · dochádzka</title>
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebar" aria-label="Hlavná navigácia">
+        <a class="brand" href="index.html">dochádzka</a>
+        <div class="eyebrow">Pracovný priestor</div>
+
+        <nav>
+            <a href="index.html">Rozvrh</a>
+            <a href="evidencia.html" class="active"
+                aria-current="page">Evidencia dochádzky</a>
+            <a href="prehlad.html">Prehľad dochádzky</a>
+        </nav>
+
+        <div class="semester-card">
+            <strong>Zimný semester</strong>
+            <span>2026 / 2027</span>
+            <span>
+                9. týždeň výučby
+            </span>
+        </div>
+
+        <div class="account">
+            <small>Prístup iba pre učiteľov</small>
+            <strong>Ján Novák</strong>
+            <span>Administrátor</span>
+            <form data-go="prihlasenie.html">
+                <button type="submit">Odhlásiť sa</button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="topbar">
+            <button class="btn btn-light btn-icon d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Otvoriť navigáciu">☰</button>
+            <span class="year">Akademický rok 2026 / 2027</span>
+            <span class="current">Ukážkové údaje · Zimný semester 2026 / 2027</span>
+        </header>
+
+        <main class="screen">
+            <div class="page-heading">
+                <h1>Evidencia dochádzky</h1>
+                <p>Živý prehľad príchodov a ručná správa dochádzky.</p>
+            </div>
+
+            <form class="toolbar">
+                <label class="visually-hidden" for="vyucba">Výučba</label>
+                <select class="form-select select-plain bg-white" id="vyucba" name="vyucba">
+                    <option value="1">Programovanie · Prednáška · Pondelok 08:00</option>
+                    <option value="2" selected>Databázové systémy · Cvičenie · Skupina A · Utorok 10:00</option>
+                    <option value="3">Databázové systémy · Cvičenie · Skupina B · Utorok 10:00</option>
+                    <option value="4">Programovanie · Cvičenie · Štvrtok 13:00</option>
+                    <option value="5">Databázové systémy · Cvičenie · Skupina C · Štvrtok 15:00</option>
+                </select>
+
+                <label class="visually-hidden" for="datum">Dátum hodiny</label>
+                <select class="form-select select-plain bg-white" id="datum" name="datum">
+                    <option value="2026-09-15">
+                        1. týždeň · 15. 9. 2026
+                    </option>
+                    <option value="2026-09-22">
+                        2. týždeň · 22. 9. 2026
+                    </option>
+                    <option value="2026-09-29">
+                        3. týždeň · 29. 9. 2026
+                    </option>
+                    <option value="2026-10-06">
+                        4. týždeň · 6. 10. 2026
+                    </option>
+                    <option value="2026-10-13">
+                        5. týždeň · 13. 10. 2026
+                    </option>
+                    <option value="2026-10-20">
+                        6. týždeň · 20. 10. 2026
+                    </option>
+                    <option value="2026-10-27">
+                        7. týždeň · 27. 10. 2026
+                    </option>
+                    <option value="2026-11-03">
+                        8. týždeň · 3. 11. 2026
+                    </option>
+                    <option value="2026-11-10" selected>
+                        9. týždeň · 10. 11. 2026
+                    </option>
+                    <option value="2026-11-19">
+                        10. týždeň · 19. 11. 2026
+                    </option>
+                    <option value="2026-11-24">
+                        11. týždeň · 24. 11. 2026
+                    </option>
+                    <option value="2026-12-01">
+                        12. týždeň · 1. 12. 2026
+                    </option>
+                    <option value="2026-12-08">
+                        13. týždeň · 8. 12. 2026
+                    </option>
+                </select>
+                <span class="toolbar-meta grow">
+                    Utorok · 10:00 – 11:30 · PC-2
+                </span>
+            </form>
+
+            <div class="totals">
+                <div class="panel">
+                    <div class="stat-number">03</div>
+                    <div class="stat-label">Prítomní</div>
+                </div>
+                <div class="panel">
+                    <div class="stat-number">01</div>
+                    <div class="stat-label">Neprítomní</div>
+                </div>
+                <div class="panel">
+                    <div class="stat-number">01</div>
+                    <div class="stat-label">Ospravedlnení</div>
+                </div>
+                <div class="panel">
+                    <div class="stat-number">01</div>
+                    <div class="stat-label">Nahrádzajú inde</div>
+                </div>
+            </div>
+
+            <div class="attendance-grid">
+                <div class="panel roster">
+                    <div class="roster-heading">
+                        <h2 class="panel-title">Študenti na hodine</h2>
+                        <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#manualModal">+ Pridať ručný záznam</button>
+                        <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#replacementModal">+ Pridať náhradu</button>
+                    </div>
+
+                    <div class="roster-columns">
+                        <span>Študent</span><span>Príchod</span><span>Stav</span>
+                    </div>
+
+                    <div class="roster-row">
+                        <span class="name">
+                            Adam Baláž
+                        </span>
+                        <span class="time">
+                            09:57:14
+                        </span>
+                        <form class="state">
+                            <input type="hidden" name="student_id" value="1">
+                            <select class="status status-present" name="status"
+                                aria-label="Stav – Adam Baláž">
+                                <option value="present" selected>Prítomný</option>
+                                <option value="absent">Neprítomný</option>
+                                <option value="excused">Ospravedlnený</option>
+                                <option value="replacing">Nahrádza</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="roster-row">
+                        <span class="name">
+                            Eva Horváthová
+                        </span>
+                        <span class="time">
+                            09:59:18
+                        </span>
+                        <form class="state">
+                            <input type="hidden" name="student_id" value="4">
+                            <select class="status status-present" name="status"
+                                aria-label="Stav – Eva Horváthová">
+                                <option value="present" selected>Prítomný</option>
+                                <option value="absent">Neprítomný</option>
+                                <option value="excused">Ospravedlnený</option>
+                                <option value="replacing">Nahrádza</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="roster-row">
+                        <span class="name">
+                            Martin Duda
+                        </span>
+                        <span class="time">
+                            —
+                        </span>
+                        <form class="state">
+                            <input type="hidden" name="student_id" value="3">
+                            <select class="status status-absent" name="status"
+                                aria-label="Stav – Martin Duda">
+                                <option value="present">Prítomný</option>
+                                <option value="absent" selected>Neprítomný</option>
+                                <option value="excused">Ospravedlnený</option>
+                                <option value="replacing">Nahrádza</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="roster-row">
+                        <span class="name">
+                            Peter Novák
+                        </span>
+                        <span class="time">
+                            —
+                        </span>
+                        <form class="state">
+                            <input type="hidden" name="student_id" value="7">
+                            <select class="status status-replacing" name="status"
+                                aria-label="Stav – Peter Novák">
+                                <option value="present">Prítomný</option>
+                                <option value="absent">Neprítomný</option>
+                                <option value="excused">Ospravedlnený</option>
+                                <option value="replacing" selected>Nahrádza</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="roster-row">
+                        <span class="name">
+                            Tomáš Kováč
+                            <small title="Poznámka">Ospravedlnenie od lekára</small>
+                        </span>
+                        <span class="time">
+                            —
+                            <em>ručne</em>
+                        </span>
+                        <form class="state">
+                            <input type="hidden" name="student_id" value="5">
+                            <select class="status status-excused" name="status"
+                                aria-label="Stav – Tomáš Kováč">
+                                <option value="present">Prítomný</option>
+                                <option value="absent">Neprítomný</option>
+                                <option value="excused" selected>Ospravedlnený</option>
+                                <option value="replacing">Nahrádza</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <div class="roster-link">
+                        Peter Novák →
+                        nahrádza v skupine C
+                        · 12. 11. 2026 · 15:00 – 16:30
+                    </div>
+
+                    <div class="roster-section">
+                        <strong>Náhrady z iných cvičení</strong>
+                        <span>Prítomní na tejto hodine · mimo pôvodnej skupiny</span>
+                    </div>
+
+                    <div class="roster-row incoming">
+                        <span class="name">
+                            Laura Tóthová
+                            <small>
+                                zo skupiny C
+                                · 12. 11.
+                            </small>
+                        </span>
+                        <span class="time">
+                            10:03:42
+                        </span>
+                        <div class="state">
+                            <span class="status status-present">Prítomný</span>
+                            <form
+                                data-confirm="Náhrada študentky Laury Tóthovej sa zruší aj na jej pôvodnom cvičení.">
+                                <button class="btn-remove" type="submit" aria-label="Zrušiť náhradu – Laura Tóthová">×</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="panel nfc" aria-labelledby="nfcTitle">
+                    <h2 class="panel-title" id="nfcTitle">Snímanie ISIC</h2>
+
+                    <span class="status status-present">Dnešná hodina · príjem príchodov</span>
+
+                    <div class="last-scan">
+                        <strong>Príchod zaznamenaný</strong>
+                        <span>Laura Tóthová</span>
+                        <small>10:03:42 · NFC / ISIC</small>
+                    </div>
+
+                    <p>Ďalšie príchody sa zobrazia automaticky po priložení ISIC karty k telefónu.</p>
+                    <p><strong class="text-body fw-semibold">Predvolený stav: neprítomný</strong></p>
+                    <p>Stav môžete zmeniť ručne v zozname študentov.</p>
+                </aside>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2 class="modal-title" id="confirmTitle">Naozaj odstrániť?</h2>
+                <div data-confirm-text></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-wide" data-bs-dismiss="modal">Zrušiť</button>
+                <button type="button" class="btn btn-primary btn-wide" data-confirm-ok>Odstrániť</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="manualModal" tabindex="-1" aria-labelledby="manualTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="--bs-modal-width: 600px">
+        <form class="modal-content" novalidate>
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title" id="manualTitle">Pridať ručný záznam</h2>
+                    <p>Zapíšte dochádzku študenta, ktorý nemohol použiť ISIC kartu.</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zavrieť"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="lesson-context">
+                    <strong>Databázové systémy · Cvičenie · Skupina A</strong>
+                    <span>10. 11. 2026 · 10:00 – 11:30 · PC-2</span>
+                </div>
+
+                <div>
+                    <label class="form-label" for="studentSearch">Študent</label>
+                    <input class="form-control mb-2" type="search" id="studentSearch" data-student-search
+                        placeholder="Hľadať podľa mena alebo ID" autocomplete="off">
+                    <div class="pick-list">
+                        <div class="heading">Študenti bez zaznamenaného príchodu</div>
+                        <div class="items">
+                            <label data-student="Martin Duda 210068">
+                                <input class="form-check-input m-0" type="radio" name="student_id" value="3">
+                                <span class="who">Martin Duda<small>ID 210068</small></span>
+                                <span class="status status-absent">Neprítomný</span>
+                            </label>
+                            <label data-student="Peter Novák 210136">
+                                <input class="form-check-input m-0" type="radio" name="student_id" value="7">
+                                <span class="who">Peter Novák<small>ID 210136</small></span>
+                                <span class="status status-replacing">Nahrádza</span>
+                            </label>
+                            <label data-student="Tomáš Kováč 210102">
+                                <input class="form-check-input m-0" type="radio" name="student_id" value="5">
+                                <span class="who">Tomáš Kováč<small>ID 210102</small></span>
+                                <span class="status status-excused">Ospravedlnený</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-label" id="newStatusLabel">Nový stav</div>
+                    <div class="chips" role="radiogroup" aria-labelledby="newStatusLabel">
+                        <input class="btn-check" type="radio" name="status" id="manual-present" value="present"
+                            checked>
+                        <label class="chip-present" for="manual-present"><span class="dot"></span>Prítomný</label>
+                        <input class="btn-check" type="radio" name="status" id="manual-absent" value="absent">
+                        <label class="chip-absent" for="manual-absent"><span class="dot"></span>Neprítomný</label>
+                        <input class="btn-check" type="radio" name="status" id="manual-excused" value="excused">
+                        <label class="chip-excused" for="manual-excused"><span class="dot"></span>Ospravedlnený</label>
+                        <input class="btn-check" type="radio" name="status" id="manual-replacing" value="replacing">
+                        <label class="chip-replacing" for="manual-replacing"><span class="dot"></span>Nahrádza</label>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="arrivedTime">Čas príchodu</label>
+                        <div class="input-action">
+                            <input class="form-control" type="time" step="1" id="arrivedTime" name="arrived_time"
+                                value="10:05:00">
+                            <button type="button" data-now="#arrivedTime">Teraz</button>
+                        </div>
+                        <div class="form-text">Ukladá sa iba pri stave prítomný.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label" for="recordedBy">Zapísal</label>
+                        <input class="form-control" type="text" id="recordedBy" value="Ján Novák · ručne" readonly>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label" for="note">Poznámka <span class="optional">voliteľné</span></label>
+                    <textarea class="form-control" id="note" name="note" rows="3" maxlength="255"
+                        placeholder="Napr. zabudnutá ISIC karta alebo nefunkčný čip…"></textarea>
+                </div>
+
+                <div class="notice">
+                    <strong>Ručný záznam</strong>
+                    <div>V zozname sa označí ako zadaný učiteľom a prepíše predvolený stav „neprítomný“.</div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-wide" data-bs-dismiss="modal">Zrušiť</button>
+                <button type="submit" class="btn btn-light btn-wide" name="add_another" value="1">Uložiť a pridať ďalší</button>
+                <button type="submit" class="btn btn-primary btn-wide">Uložiť záznam</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="replacementModal" tabindex="-1" aria-labelledby="replacementTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 560px">
+        <form class="modal-content" novalidate>
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title" id="replacementTitle">Pridať náhradu</h2>
+                    <p>Študent z inej skupiny si na tejto hodine nahrádza svoje cvičenie.</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zavrieť"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="lesson-context">
+                    <strong>Databázové systémy · Cvičenie · Skupina A</strong>
+                    <span>10. 11. 2026 · 10:00 – 11:30 · PC-2</span>
+                </div>
+
+                <div>
+                    <label class="form-label" for="replacementStudent">Študent z inej skupiny</label>
+                    <select class="form-select" id="replacementStudent" name="student_id" required>
+                        <option value="">Vyberte študenta</option>
+                        <option value="13">Filip Gajdoš · skupina B (Utorok 10:00)</option>
+                        <option value="16">Ema Krajčíová · skupina B (Utorok 10:00)</option>
+                        <option value="17">Michal Lukáč · skupina C (Štvrtok 15:00)</option>
+                        <option value="18">Natália Mináriková · skupina C (Štvrtok 15:00)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="form-label" for="replacementTime">Čas príchodu <span class="optional">voliteľné</span></label>
+                    <div class="input-action">
+                        <input class="form-control" type="time" step="1" id="replacementTime" name="arrived_time"
+                            value="10:05:00">
+                        <button type="button" data-now="#replacementTime">Teraz</button>
+                    </div>
+                </div>
+
+                <div class="notice">
+                    <strong>Prepojenie</strong>
+                    <div>Tu bude študent prítomný a zobrazí sa pod čiarou. Na svojom pôvodnom cvičení v tomto týždni dostane stav „nahrádza“.</div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light btn-wide" data-bs-dismiss="modal">Zrušiť</button>
+                <button type="submit" class="btn btn-primary btn-wide">Pridať náhradu</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
