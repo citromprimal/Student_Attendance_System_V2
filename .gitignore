@@ -1,0 +1,27 @@
+# ==============================
+# IDEs (JetBrains: Android Studio, PhpStorm, ...)
+# ==============================
+.idea/
+*.iml
+
+# ==============================
+# OS files
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# Android / Kotlin / Gradle
+# ==============================
+.gradle/
+build/
+captures/
+.kotlin/
+local.properties
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Web / backend entries will be added once the stack is decided.
