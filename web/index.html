@@ -268,6 +268,12 @@
                         </datalist>
                     </div>
                     <div class="col-sm-6">
+                        <label class="form-label" for="room">Miestnosť</label>
+                        <input class="form-control" type="text" id="room" name="room"
+                            value="" placeholder="napr. A-101" required>
+                    </div>
+
+                    <div class="col-sm-6">
                         <label class="form-label" for="type">Typ výučby</label>
                         <select class="form-select" id="type" name="type">
                             <option value="lecture">Prednáška</option>
@@ -276,14 +282,16 @@
                             <option value="lab">Lab. cvičenie</option>
                         </select>
                     </div>
-
-                    <div class="col-sm-6">
-                        <label class="form-label" for="room">Miestnosť</label>
-                        <input class="form-control" type="text" id="room" name="room"
-                            value="" placeholder="napr. A-101" required>
+                    <div class="col-sm-6 d-flex align-items-end">
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="import_students" name="import_students" value="1" checked
+                                aria-describedby="importStudentsHelp">
+                            <label class="form-check-label" for="import_students">Po uložení importovať študentov</label>
+                            <div class="form-text mt-0" id="importStudentsHelp">Otvorí sa import zoznamu študentov.</div>
+                        </div>
                     </div>
 
-                    <div class="col-sm-4" data-hide-once>
+                    <div class="col-12 col-sm" data-hide-once>
                         <label class="form-label" for="weekday">Deň</label>
                         <select class="form-select" id="weekday" name="weekday">
                             <option value="1" selected>Pondelok</option>
@@ -293,12 +301,12 @@
                             <option value="5">Piatok</option>
                         </select>
                     </div>
-                    <div class="col-6 col-sm-4">
+                    <div class="col-6 col-sm">
                         <label class="form-label" for="starts_at">Začiatok</label>
                         <input class="form-control" type="time" step="300" id="starts_at" name="starts_at"
                             value="08:00" required>
                     </div>
-                    <div class="col-6 col-sm-4">
+                    <div class="col-6 col-sm">
                         <label class="form-label" for="ends_at">Koniec</label>
                         <input class="form-control" type="time" step="300" id="ends_at" name="ends_at"
                             value="09:30" required>
@@ -339,12 +347,6 @@
                 </div>
 
                 <div class="notice" role="status"><strong>Bez kolízií</strong><div>V tomto čase nemáte inú výučbu a miestnosť nie je obsadená.</div></div>
-
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="import_students" name="import_students" value="1" checked>
-                    <label class="form-check-label" for="import_students">Po uložení importovať študentov</label>
-                    <div class="form-text mt-0">Otvorí sa import zoznamu študentov pre túto hodinu.</div>
-                </div>
             </div>
 
             <div class="modal-footer">
