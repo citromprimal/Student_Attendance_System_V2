@@ -190,11 +190,9 @@ select.status:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
 .chips label.chip-present .dot { color: var(--present-fg); }
 .chips label.chip-absent .dot { color: var(--absent-fg); }
 .chips label.chip-excused .dot { color: var(--excused-fg); }
-.chips label.chip-replacing .dot { color: var(--replacing-fg); }
 .chips input:checked + label.chip-present { background: var(--present-bg); border-color: var(--present-fg); color: var(--present-fg); }
 .chips input:checked + label.chip-absent { background: var(--absent-bg); border-color: var(--absent-fg); color: var(--absent-fg); }
 .chips input:checked + label.chip-excused { background: var(--excused-bg); border-color: var(--excused-fg); color: var(--excused-fg); }
-.chips input:checked + label.chip-replacing { background: var(--replacing-bg); border-color: var(--replacing-fg); color: var(--replacing-fg); }
 
 /* Dialógy */
 .modal { --bs-modal-bg: #fff; }
@@ -307,8 +305,10 @@ select.status:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
 .lesson-context span { font-size: 12px; font-weight: 500; color: var(--muted); }
 
 .pick-list { border: 1px solid var(--line-input); border-radius: 8px; overflow: hidden; }
-.pick-list .heading { padding: 8px 14px; background: var(--page); font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
-.pick-list .items { max-height: 190px; overflow-y: auto; }
+.pick-list .heading { position: sticky; top: 0; z-index: 1; padding: 8px 14px; background: var(--page); font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
+.pick-list .heading + label, .pick-list .items > label:first-child { border-top: 0; }
+.pick-list .items { max-height: 260px; overflow-y: auto; }
+.pick-list .items > .heading:not(:first-child) { border-top: 1px solid var(--line); }
 .pick-list label { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--line); cursor: pointer; margin: 0; }
 .pick-list label:has(input:checked) { background: #f7faff; }
 .pick-list label .who { flex: 1 1 auto; min-width: 0; font-weight: 500; }

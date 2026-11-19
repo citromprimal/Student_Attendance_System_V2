@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     confirmDialog();
     statusSelects();
     lessonDialog();
-    manualDialog();
+    recordDialog();
 
     document.querySelectorAll('[data-proto-note]').forEach((el) => {
         el.addEventListener('click', (event) => {
@@ -80,7 +80,7 @@ function statusSelects() {
     });
 }
 
-// Dialóg „Pridať výučbu“: pri jednorazovej výučbe sa skryje deň a „platí do“.
+// Dialóg „Pridať predmet“: pri jednorazovej výučbe sa skryje deň a „platí do“.
 function lessonDialog() {
     const form = document.getElementById('lessonForm');
     if (!form) return;
@@ -93,18 +93,51 @@ function lessonDialog() {
 
     form.addEventListener('change', toggleOnce);
     toggleOnce();
+
+    // Import študentov ešte nie je hotový – zatiaľ len oznam.
+    form.addEventListener('submit', () => {
+        if (form.querySelector('[name=import_students]').checked) {
+            toast('Import študentov zatiaľ nie je v prototype – údaje sa neukladajú.');
+        }
+    });
 }
 
-// Dialóg „Pridať ručný záznam“: hľadanie študenta a tlačidlo „Teraz“.
-function manualDialog() {
-    const search = document.querySelector('[data-student-search]');
-    if (search) {
+// Dialóg „Pridať záznam“: hľadanie študenta naprieč skupinami a prepínanie
+// medzi ručným záznamom (vlastná skupina) a náhradou (iná skupina).
+function recordDialog() {
+    const form = document.getElementById('recordForm');
+    if (form) {
+        const search = form.querySelector('[data-student-search]');
+        const rows = form.querySelectorAll('[data-student]');
+
         search.addEventListener('input', () => {
             const query = normalize(search.value);
-            document.querySelectorAll('[data-student]').forEach((row) => {
+            rows.forEach((row) => {
                 row.classList.toggle('d-none', !normalize(row.dataset.student).includes(query));
             });
+            let any = false;
+            form.querySelectorAll('[data-group-heading]').forEach((heading) => {
+                const group = heading.dataset.groupHeading;
+                const visible = form.querySelector(`[data-group="${group}"]:not(.d-none)`);
+                heading.classList.toggle('d-none', !visible);
+                any ||= !!visible;
+            });
+            form.querySelector('[data-no-results]').classList.toggle('d-none', any);
         });
+
+        const setMode = () => {
+            const picked = form.querySelector('[name=student_id]:checked');
+            const mode = picked?.closest('[data-group]').dataset.group ?? 'own';
+            form.dataset.mode = mode;
+            form.querySelectorAll('[data-only]').forEach((el) => {
+                el.classList.toggle('d-none', el.dataset.only !== mode);
+            });
+            form.querySelector('[data-submit-label]').textContent =
+                mode === 'other' ? 'Pridať náhradu' : 'Uložiť záznam';
+        };
+
+        form.addEventListener('change', setMode);
+        setMode();
     }
 
     document.querySelectorAll('[data-now]').forEach((button) => {

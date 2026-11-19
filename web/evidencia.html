@@ -130,9 +130,8 @@
             <div class="attendance-grid">
                 <div class="panel roster">
                     <div class="roster-heading">
-                        <h2 class="panel-title">Študenti na hodine</h2>
-                        <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#manualModal">+ Pridať ručný záznam</button>
-                        <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#replacementModal">+ Pridať náhradu</button>
+                        <h2 class="panel-title">Zoznam študentov</h2>
+                        <button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#recordModal">+ Pridať záznam</button>
                     </div>
 
                     <div class="roster-columns">
@@ -153,7 +152,7 @@
                                 <option value="present" selected>Prítomný</option>
                                 <option value="absent">Neprítomný</option>
                                 <option value="excused">Ospravedlnený</option>
-                                <option value="replacing">Nahrádza</option>
+                                <option value="replacing" disabled>Nahrádza</option>
                             </select>
                         </form>
                     </div>
@@ -171,7 +170,7 @@
                                 <option value="present" selected>Prítomný</option>
                                 <option value="absent">Neprítomný</option>
                                 <option value="excused">Ospravedlnený</option>
-                                <option value="replacing">Nahrádza</option>
+                                <option value="replacing" disabled>Nahrádza</option>
                             </select>
                         </form>
                     </div>
@@ -189,7 +188,7 @@
                                 <option value="present">Prítomný</option>
                                 <option value="absent" selected>Neprítomný</option>
                                 <option value="excused">Ospravedlnený</option>
-                                <option value="replacing">Nahrádza</option>
+                                <option value="replacing" disabled>Nahrádza</option>
                             </select>
                         </form>
                     </div>
@@ -207,7 +206,7 @@
                                 <option value="present">Prítomný</option>
                                 <option value="absent">Neprítomný</option>
                                 <option value="excused">Ospravedlnený</option>
-                                <option value="replacing" selected>Nahrádza</option>
+                                <option value="replacing" selected disabled>Nahrádza</option>
                             </select>
                         </form>
                     </div>
@@ -227,7 +226,7 @@
                                 <option value="present">Prítomný</option>
                                 <option value="absent">Neprítomný</option>
                                 <option value="excused" selected>Ospravedlnený</option>
-                                <option value="replacing">Nahrádza</option>
+                                <option value="replacing" disabled>Nahrádza</option>
                             </select>
                         </form>
                     </div>
@@ -299,13 +298,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="manualModal" tabindex="-1" aria-labelledby="manualTitle" aria-hidden="true">
+<div class="modal fade" id="recordModal" tabindex="-1" aria-labelledby="recordTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="--bs-modal-width: 600px">
-        <form class="modal-content" novalidate>
+        <form class="modal-content" id="recordForm" data-mode="own" novalidate>
             <div class="modal-header">
                 <div>
-                    <h2 class="modal-title" id="manualTitle">Pridať ručný záznam</h2>
-                    <p>Zapíšte dochádzku študenta, ktorý nemohol použiť ISIC kartu.</p>
+                    <h2 class="modal-title" id="recordTitle">Pridať záznam</h2>
+                    <p>Zapíšte študenta, ktorý nemohol použiť ISIC kartu, alebo študenta z inej skupiny, ktorý si tu nahrádza cvičenie.</p>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zavrieť"></button>
             </div>
@@ -321,28 +320,48 @@
                     <input class="form-control mb-2" type="search" id="studentSearch" data-student-search
                         placeholder="Hľadať podľa mena alebo ID" autocomplete="off">
                     <div class="pick-list">
-                        <div class="heading">Študenti bez zaznamenaného príchodu</div>
                         <div class="items">
-                            <label data-student="Martin Duda 210068">
+                            <div class="heading" data-group-heading="own">Z tejto skupiny · bez zaznamenaného príchodu</div>
+                            <label data-student="Martin Duda 210068" data-group="own">
                                 <input class="form-check-input m-0" type="radio" name="student_id" value="3">
                                 <span class="who">Martin Duda<small>ID 210068</small></span>
                                 <span class="status status-absent">Neprítomný</span>
                             </label>
-                            <label data-student="Peter Novák 210136">
+                            <label data-student="Peter Novák 210136" data-group="own">
                                 <input class="form-check-input m-0" type="radio" name="student_id" value="7">
                                 <span class="who">Peter Novák<small>ID 210136</small></span>
                                 <span class="status status-replacing">Nahrádza</span>
                             </label>
-                            <label data-student="Tomáš Kováč 210102">
+                            <label data-student="Tomáš Kováč 210102" data-group="own">
                                 <input class="form-check-input m-0" type="radio" name="student_id" value="5">
                                 <span class="who">Tomáš Kováč<small>ID 210102</small></span>
                                 <span class="status status-excused">Ospravedlnený</span>
                             </label>
+
+                            <div class="heading" data-group-heading="other">Z iných skupín · náhrada</div>
+                            <label data-student="Filip Gajdoš 210041 skupina B" data-group="other">
+                                <input class="form-check-input m-0" type="radio" name="student_id" value="13">
+                                <span class="who">Filip Gajdoš<small>ID 210041 · skupina B · Utorok 10:00</small></span>
+                            </label>
+                            <label data-student="Ema Krajčíová 210077 skupina B" data-group="other">
+                                <input class="form-check-input m-0" type="radio" name="student_id" value="16">
+                                <span class="who">Ema Krajčíová<small>ID 210077 · skupina B · Utorok 10:00</small></span>
+                            </label>
+                            <label data-student="Michal Lukáč 210089 skupina C" data-group="other">
+                                <input class="form-check-input m-0" type="radio" name="student_id" value="17">
+                                <span class="who">Michal Lukáč<small>ID 210089 · skupina C · Štvrtok 15:00</small></span>
+                            </label>
+                            <label data-student="Natália Mináriková 210115 skupina C" data-group="other">
+                                <input class="form-check-input m-0" type="radio" name="student_id" value="18">
+                                <span class="who">Natália Mináriková<small>ID 210115 · skupina C · Štvrtok 15:00</small></span>
+                            </label>
+
+                            <div class="none d-none" data-no-results>Žiadny študent nevyhovuje hľadaniu.</div>
                         </div>
                     </div>
                 </div>
 
-                <div>
+                <div data-only="own">
                     <div class="form-label" id="newStatusLabel">Nový stav</div>
                     <div class="chips" role="radiogroup" aria-labelledby="newStatusLabel">
                         <input class="btn-check" type="radio" name="status" id="manual-present" value="present"
@@ -352,8 +371,6 @@
                         <label class="chip-absent" for="manual-absent"><span class="dot"></span>Neprítomný</label>
                         <input class="btn-check" type="radio" name="status" id="manual-excused" value="excused">
                         <label class="chip-excused" for="manual-excused"><span class="dot"></span>Ospravedlnený</label>
-                        <input class="btn-check" type="radio" name="status" id="manual-replacing" value="replacing">
-                        <label class="chip-replacing" for="manual-replacing"><span class="dot"></span>Nahrádza</label>
                     </div>
                 </div>
 
@@ -365,7 +382,7 @@
                                 value="10:05:00">
                             <button type="button" data-now="#arrivedTime">Teraz</button>
                         </div>
-                        <div class="form-text">Ukladá sa iba pri stave prítomný.</div>
+                        <div class="form-text" data-only="own">Ukladá sa iba pri stave prítomný.</div>
                     </div>
                     <div class="col-sm-6">
                         <label class="form-label" for="recordedBy">Zapísal</label>
@@ -379,67 +396,20 @@
                         placeholder="Napr. zabudnutá ISIC karta alebo nefunkčný čip…"></textarea>
                 </div>
 
-                <div class="notice">
+                <div class="notice" data-only="own">
                     <strong>Ručný záznam</strong>
                     <div>V zozname sa označí ako zadaný učiteľom a prepíše predvolený stav „neprítomný“.</div>
+                </div>
+                <div class="notice warn" data-only="other">
+                    <strong>Náhrada</strong>
+                    <div>Študent bude na tejto hodine prítomný a zobrazí sa pod čiarou. Na svojom pôvodnom cvičení v tomto týždni dostane stav „nahrádza“.</div>
                 </div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-light btn-wide" data-bs-dismiss="modal">Zrušiť</button>
                 <button type="submit" class="btn btn-light btn-wide" name="add_another" value="1">Uložiť a pridať ďalší</button>
-                <button type="submit" class="btn btn-primary btn-wide">Uložiť záznam</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal fade" id="replacementModal" tabindex="-1" aria-labelledby="replacementTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="--bs-modal-width: 560px">
-        <form class="modal-content" novalidate>
-            <div class="modal-header">
-                <div>
-                    <h2 class="modal-title" id="replacementTitle">Pridať náhradu</h2>
-                    <p>Študent z inej skupiny si na tejto hodine nahrádza svoje cvičenie.</p>
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zavrieť"></button>
-            </div>
-
-            <div class="modal-body">
-                <div class="lesson-context">
-                    <strong>Databázové systémy · Cvičenie · Skupina A</strong>
-                    <span>10. 11. 2026 · 10:00 – 11:30 · PC-2</span>
-                </div>
-
-                <div>
-                    <label class="form-label" for="replacementStudent">Študent z inej skupiny</label>
-                    <select class="form-select" id="replacementStudent" name="student_id" required>
-                        <option value="">Vyberte študenta</option>
-                        <option value="13">Filip Gajdoš · skupina B (Utorok 10:00)</option>
-                        <option value="16">Ema Krajčíová · skupina B (Utorok 10:00)</option>
-                        <option value="17">Michal Lukáč · skupina C (Štvrtok 15:00)</option>
-                        <option value="18">Natália Mináriková · skupina C (Štvrtok 15:00)</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="form-label" for="replacementTime">Čas príchodu <span class="optional">voliteľné</span></label>
-                    <div class="input-action">
-                        <input class="form-control" type="time" step="1" id="replacementTime" name="arrived_time"
-                            value="10:05:00">
-                        <button type="button" data-now="#replacementTime">Teraz</button>
-                    </div>
-                </div>
-
-                <div class="notice">
-                    <strong>Prepojenie</strong>
-                    <div>Tu bude študent prítomný a zobrazí sa pod čiarou. Na svojom pôvodnom cvičení v tomto týždni dostane stav „nahrádza“.</div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light btn-wide" data-bs-dismiss="modal">Zrušiť</button>
-                <button type="submit" class="btn btn-primary btn-wide">Pridať náhradu</button>
+                <button type="submit" class="btn btn-primary btn-wide" data-submit-label>Uložiť záznam</button>
             </div>
         </form>
     </div>

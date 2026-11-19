@@ -59,7 +59,7 @@
                     9. – 13. novembra 2026
                     <span class="toolbar-meta ms-2">9. týždeň výučby</span>
                 </h2>
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#lessonModal">+ Pridať výučbu</button>
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#lessonModal">+ Pridať predmet</button>
             </div>
 
             <div class="row g-3">
@@ -250,7 +250,7 @@
 
             <div class="modal-header">
                 <div>
-                    <h2 class="modal-title" id="lessonTitle">Pridať výučbu</h2>
+                    <h2 class="modal-title" id="lessonTitle">Pridať predmet</h2>
                     <p>Vytvorte novú hodinu v rozvrhu – Zimný semester 2026 / 2027.</p>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zavrieť"></button>
@@ -278,9 +278,9 @@
                     </div>
 
                     <div class="col-sm-6">
-                        <label class="form-label" for="room">Miestnosť <span class="optional">voliteľné</span></label>
+                        <label class="form-label" for="room">Miestnosť</label>
                         <input class="form-control" type="text" id="room" name="room"
-                            value="" placeholder="napr. A-101">
+                            value="" placeholder="napr. A-101" required>
                     </div>
 
                     <div class="col-sm-4" data-hide-once>
@@ -338,11 +338,18 @@
                     <div class="form-text mt-2" data-hide-once>Predvolené podľa nastavení semestra · 13 týždňov</div>
                 </div>
 
-                <div class="notice" role="status"><strong>Bez kolízií</strong><div>V tomto čase nemáte inú výučbu a miestnosť nie je obsadená.</div></div>            </div>
+                <div class="notice" role="status"><strong>Bez kolízií</strong><div>V tomto čase nemáte inú výučbu a miestnosť nie je obsadená.</div></div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="import_students" name="import_students" value="1" checked>
+                    <label class="form-check-label" for="import_students">Po uložení importovať študentov</label>
+                    <div class="form-text mt-0">Otvorí sa import zoznamu študentov pre túto hodinu.</div>
+                </div>
+            </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-light btn-wide" data-bs-dismiss="modal">Zrušiť</button>
-                <button type="submit" class="btn btn-primary btn-wide">Uložiť výučbu</button>
+                <button type="submit" class="btn btn-primary btn-wide">Uložiť predmet</button>
             </div>
         </form>
     </div>
